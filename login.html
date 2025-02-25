@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictocracy.in</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 30px;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            margin: 0;
+        }
+        .header h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+        .login-container {
+            display: inline-block;
+            background-color: rgba(0, 51, 102, 0.8);
+            color: white;
+            padding: 40px 30px;
+            margin-top: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+        .login-container h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1.2em;
+            background-color: white;
+            color: black;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            background-color: #00509e;
+            color: white;
+            padding: 15px;
+            width: 100%;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #007acc;
+        }
+        .captcha-container {
+            margin: 20px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .captcha-container input {
+            width: 50%;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Dictocracy!!</h1>
+    </div>
+
+    <div class="login-container">
+        <h2>Log In</h2>
+        <!-- Flash message for errors -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div style="color: red;">
+              <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form id="loginForm" method="POST" action="/">
+
+            <!-- Voter ID Input -->
+            <input type="text" id="voterId" name="voterId" placeholder="Enter your Voter ID" required><br>
+            
+            <!-- Email Input -->
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required><br>
+            
+            <!-- CAPTCHA Section -->
+            <div class="captcha-container">
+                <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>?</label><br>
+                <input type="number" id="captchaInput" name="captchaInput" placeholder="Enter your answer" required><br>
+            </div>
+
+            <!-- Hidden fields to store the random numbers for backend validation -->
+            <input type="hidden" id="num1_hidden" name="num1">
+            <input type="hidden" id="num2_hidden" name="num2">
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Generate random numbers for CAPTCHA
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+
+        document.getElementById('num1').textContent = num1;
+        document.getElementById('num2').textContent = num2;
+        document.getElementById('num1_hidden').value = num1;
+        document.getElementById('num2_hidden').value = num2;
+
+        // Add form submit event listener for CAPTCHA validation and backend submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const captchaInput = document.getElementById('captchaInput').value;
+            const expectedCaptcha = num1 + num2;
+
+            // Validate CAPTCHA input
+            if (parseInt(captchaInput) !== expectedCaptcha) {
+                alert('Incorrect CAPTCHA. Please try again.');
+                e.preventDefault();  // Prevent form submission if CAPTCHA is wrong
+            } 
+        });
+    </script>
+</body>
+</html>

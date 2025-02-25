@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Candidate</title>
+    <style>
+        body {
+            background-color: #f1f1f1; /* Light background for contrast */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background-color: #003366; /* Dark blue bar */
+            color: white;
+            padding: 10px 20px; /* Padding for the header */
+            border-bottom: 5px solid white; /* Bottom border */
+            margin-bottom: 20px; /* Space below header */
+        }
+        .header h1 {
+            font-size: 2em; /* Font size for header text */
+            margin: 0; /* Remove default margin */
+        }
+        .container {
+            background-color: white; /* Container background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: auto;
+            text-align: left; /* Align text to the left */
+        }
+        h2 {
+            font-size: 2em;
+        }
+        label {
+            font-size: 1.2em;
+            display: block; /* Block display for labels */
+            margin: 10px 0;
+        }
+        input[type="radio"] {
+            margin-right: 5px; /* Reduced space between radio button and label */
+            vertical-align: middle; /* Align radio buttons with text */
+        }
+        input, select {
+            width: 100%; /* Set to 100% for uniformity */
+            padding: 10px; /* Adjust padding */
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #00509e; /* Dark blue button */
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007acc; /* Change to brighter blue on hover */
+        }
+        .candidates {
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+            text-align: center; /* Center text within candidates section */
+        }
+        .candidate {
+            margin: 10px auto; /* Center margin for candidates */
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9; /* Light background for candidates */
+            width: 80%; /* Set width for the candidate box */
+            display: flex; /* Flexbox for alignment */
+            align-items: center; /* Center vertically */
+            justify-content: flex-start; /* Align items to the left */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Select Your Candidate</h1>
+    </div>
+
+    <div class="container">
+        <form id="locationForm">
+            <label for="state">State/UT:</label>
+            <input type="text" id="state" placeholder="Enter State/UT" required>
+
+            <label for="district">District:</label>
+            <input type="text" id="district" placeholder="Enter District" required>
+
+            <label for="constituency">Constituency:</label>
+            <input type="text" id="constituency" placeholder="Enter Constituency" required>
+
+            <label for="tehsil">Tehsil/Taluqa/Mandal:</label>
+            <input type="text" id="tehsil" placeholder="Enter Tehsil/Taluqa/Mandal" required>
+
+            <button type="submit">Find Candidates</button>
+        </form>
+
+        <div class="candidates" id="candidates">
+            <h2>Candidates</h2>
+            <div class="candidate">
+                <label>
+                    <input type="radio" id="candidate1" name="candidate" value="Candidate 1">
+                    Candidate 1
+                </label>
+            </div>
+            <div class="candidate">
+                <label>
+                    <input type="radio" id="candidate2" name="candidate" value="Candidate 2">
+                    Candidate 2
+                </label>
+            </div>
+            <div class="candidate">
+                <label>
+                    <input type="radio" id="candidate3" name="candidate" value="Candidate 3">
+                    Candidate 3
+                </label>
+            </div>
+            <button id="submitVote" style="display:none;">Submit Vote</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('locationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('candidates').style.display = 'block';
+            document.getElementById('submitVote').style.display = 'block';
+        });
+
+        document.getElementById('submitVote').addEventListener('click', function() {
+            const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
+            if (selectedCandidate) {
+                alert(`You have voted for: ${selectedCandidate.value}`);
+            } else {
+                alert('Please select a candidate before submitting your vote.');
+            }
+        });
+    </script>
+</body>
+</html>

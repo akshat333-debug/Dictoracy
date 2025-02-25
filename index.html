@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictocracy.in</title>
+    <style>
+        body {
+            background-color: #f1f1f1; /* Light matching background */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            text-align: center; /* Center align buttons */
+        }
+        .header {
+            background-color: #003366; /* Bar background color */
+            color: white;
+            padding: 10px 40px; /* Adjust padding to give more space */
+            border-bottom: 5px solid rgb(255, 255, 255); /* Bottom border */
+            width: 100%; /* Full width */
+            height: 80px; /* Set height for the header */
+            position: relative; /* Position relative for absolute child */
+            margin: 0; /* Remove any potential margin */
+        }
+        .header h1 {
+            font-size: 1.6em; /* Further reduced font size for better fit */
+            margin: 0; /* Remove default margin */
+            position: relative; /* Ensure it sits on top of the image */
+            z-index: 2; /* Ensure text is above the image */
+            line-height: 80px; /* Center text vertically within the header */
+        }
+        .header img {
+            position: absolute; /* Position it absolutely */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            height: 100%; /* Set height to 100% of the header */
+            width: auto; /* Maintain aspect ratio */
+        }
+        .banner {
+            margin-top: 20px; /* Space below the header */
+            width: 100%; /* Full width banner */
+            height: 400px; /* Set a consistent height */
+            display: flex; /* Flexbox to center content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            position: relative; /* Position for absolute children */
+            overflow: hidden; /* Hide overflow */
+        }
+        .banner img {
+            width: 100%; /* Make the image fill the width */
+            height: 100%; /* Make the image fill the height */
+            object-fit: cover; /* Ensure image covers the banner without distortion */
+            position: absolute; /* Position images absolutely */
+            opacity: 0; /* Start with hidden images */
+            transition: opacity 1s ease-in-out; /* Fade transition */
+        }
+        .banner img.active {
+            opacity: 1; /* Show active image */
+        }
+        div {
+            font-size: 3em;
+            margin-top: 20px; /* Margin for buttons */
+        }
+        .button {
+            background-color: #423ec0; /* Button background color */
+            color: white; /* White text */
+            padding: 20px 25px; /* Padding for the button */
+            margin: 10px; /* Margin between buttons */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 1.2em; /* Font size */
+            text-decoration: none; /* No underline */
+            display: inline-block; /* Align buttons horizontally */
+        }
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        .faqs {
+            margin: 20px auto; /* Center the box with top/bottom margin */
+            padding: 20px; /* Increased padding for a more spacious look */
+            background-color: rgba(30, 64, 82, 0.8); /* Dark blue background with transparency */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            text-align: left; /* Align text to the left */
+            font-size: 14px;
+            color: white;
+            width: 90%; /* Width set to 90% for responsiveness */
+            max-width: 1600px; /* Maximum width increased to 1600px for wider view */
+        }
+        .faqs h1 {
+            font-size: 2em; /* Increased font size */
+            margin-bottom: 10px; /* Add margin below the heading */
+        }
+        .faq-item {
+            margin-bottom: 10px; /* Space between FAQ items */
+            background-color: rgba(20, 20, 40, 0.7); /* Darker blue for items with transparency */
+            padding: 10px; /* Padding inside each FAQ item */
+            border-radius: 5px; /* Rounded corners for items */
+        }
+        .faq-item h3 {
+            margin: 0; /* Remove default margin */
+            font-size: 1.1em; /* Slightly larger font for questions */
+        }
+        .faq-item p {
+            margin: 5px 0 0; /* Space above paragraphs */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to Dictocracy!!</h1>
+        <img src="https://e7.pngegg.com/pngimages/232/377/png-clipart-sarnath-museum-lion-capital-of-ashoka-pillars-of-ashoka-state-emblem-of-india-national-symbols-of-india-symbol-miscellaneous-mammal.png" alt="Emblem" />
+    </div>
+
+    <div class="banner">
+        <img src="Screenshot 2024-09-25 at 4.34.54 PM.png" alt="Banner Image 1" class="active">
+        <img src="Screenshot 2024-09-25 at 4.46.23 PM.png" alt="Banner Image 2">
+        <img src="Screenshot 2024-09-25 at 4.46.37 PM.png" alt="Banner Image 3">
+    </div>
+
+    <div class="faqs">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-item">
+            <h3>1. How do I register to vote?</h3>
+            <p>You can register online through our website or visit your local election office for assistance.</p>
+        </div>
+        <div class="faq-item">
+            <h3>2. What do I need to register?</h3>
+            <p>Typically, you will need a valid ID and proof of residence. Check your local requirements for specifics.</p>
+        </div>
+        <div class="faq-item">
+            <h3>3. When is the deadline to register?</h3>
+            <p>Registration deadlines vary by state. Please check the voter registration page for your state’s deadline.</p>
+        </div>
+        <div class="faq-item">
+            <h3>4. How do I know if I'm registered?</h3>
+            <p>You can check your registration status on our website or contact your local election office.</p>
+        </div>
+        <div class="faq-item">
+            <h3>5. What should I do if I encounter problems on election day?</h3>
+            <p>If you experience any issues, contact the election hotline for immediate assistance.</p>
+        </div>
+    </div>
+
+    <div>
+        <!-- Opens the login.html in a new tab -->
+        <a href="http://127.0.0.1:5000" class="button" target="_blank">Login</a>
+        <!-- Redirects to Voter ID page in a new tab -->
+        <a href="https://voters.eci.gov.in/" class="button" target="_blank">Create a Voter ID</a>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.banner img');
+        let currentIndex = 0;
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length; // Loop back to the first image
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextImage, 3000); // Change image every 3 seconds
+    </script>
+</body>
+</html>

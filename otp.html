@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            background-color: #f1f1f1; /* Light matching background */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            text-align: center; /* Center align elements */
+        }
+        .header {
+            background-color: #003366; /* Header background color */
+            color: white;
+            padding: 10px 40px; /* Padding for header */
+            border-bottom: 5px solid rgb(255, 255, 255); /* Bottom border */
+            width: 100%; /* Full width */
+            height: 80px; /* Set height for the header */
+            position: relative; /* Relative positioning for child elements */
+            margin: 0; /* Remove any margin */
+        }
+        .header h1 {
+            font-size: 1.6em; /* Header font size */
+            margin: 0; /* Remove default margin */
+            line-height: 80px; /* Center text vertically within the header */
+        }
+        .otp-container {
+            display: inline-block; /* Center the form */
+            background-color: rgba(0, 51, 102, 0.8); /* Background for the OTP form */
+            color: white; /* Text color */
+            padding: 120px 80px; /* Increased padding for more space (200% larger) */
+            margin-top: 100px; /* Margin from the top */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            width: 1000px; /* Increased width for a larger box (200% larger) */
+            text-align: left; /* Align text to the left for better input placement */
+        }
+        .otp-container h2 {
+            font-size: 2.5em; /* Title font size */
+            margin-bottom: 20px; /* Margin below title */
+        }
+        .otp-container input {
+            width: calc(100% - 30px); /* Full width input minus padding */
+            padding: 15px; /* Padding for input */
+            margin: 10px auto; /* Center input horizontally */
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 1.2em; /* Font size for input */
+            background-color: white; /* Background color for input */
+            color: black; /* Text color */
+            display: block; /* Make input a block element */
+        }
+        .otp-container button {
+            background-color: #00509e; /* Button background color */
+            color: white; /* Button text color */
+            padding: 15px; /* Button padding */
+            width: 100%; /* Full width button */
+            font-size: 1.5em; /* Button font size */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+        }
+        .otp-container button:hover {
+            background-color: #007acc; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>OTP Verification</h1>
+    </div>
+
+    <div class="otp-container">
+        <!-- Flash message for errors -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div style="color: red;">
+              <ul>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
+        <h2>Enter OTP</h2>
+        <form method="POST" action="/otp_verification">
+            <input type="text" name="otp" placeholder="Enter OTP" required><br>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>
+</body>
+</html>
